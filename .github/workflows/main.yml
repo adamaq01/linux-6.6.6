@@ -11,7 +11,7 @@ on:
       kernel_source:
         description: "Select the kernel source"
         required: false
-        default: "nationpwned"
+        default: "adamaq01"
       kernel_version:
         description: "Select kernel version"
         required: false
@@ -35,7 +35,7 @@ on:
         default: "kernel-config/release/general"
         
 env:
-  TZ: Asia/Jakarta
+  TZ: Europe/Paris
 
 jobs:
   build:
@@ -64,7 +64,7 @@ jobs:
           sudo timedatectl set-timezone "${TZ}"
           echo "status=success" >> ${GITHUB_OUTPUT}
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
-        uses: nationpwned/amlogic-s9xxx-armbian@main
+        uses: ophub/amlogic-s9xxx-armbian@main
         if: ${{ steps.init.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
